@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 15, 2014 at 12:11 PM
+-- Generation Time: Feb 02, 2014 at 08:46 AM
 -- Server version: 5.5.29
 -- PHP Version: 5.4.10
 
@@ -25,29 +25,26 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `book`
 --
--- Creation: Jan 15, 2014 at 10:57 AM
---
 
 CREATE TABLE `book` (
+  `book_id` int(11) NOT NULL AUTO_INCREMENT,
   `call_no` varchar(30) NOT NULL,
   `title` varchar(50) NOT NULL,
   `author` varchar(50) NOT NULL,
   `isbn/issn` varchar(30) NOT NULL,
   `book_type` varchar(20) NOT NULL,
   `description` varchar(150) NOT NULL,
-  `book_status` varchar(8) NOT NULL,
+  `book_status` varchar(8) NOT NULL COMMENT 'ON SHELF or ON LOAN',
   `editor` varchar(50) DEFAULT NULL,
   `publisher` varchar(50) NOT NULL,
-  PRIMARY KEY (`call_no`),
-  UNIQUE KEY `isbn/issn` (`isbn/issn`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`book_id`),
+  UNIQUE KEY `call_no` (`call_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `librarian`
---
--- Creation: Jan 15, 2014 at 11:09 AM
 --
 
 CREATE TABLE `librarian` (
@@ -61,19 +58,16 @@ CREATE TABLE `librarian` (
 --
 -- Table structure for table `request`
 --
--- Creation: Jan 15, 2014 at 11:02 AM
---
 
 CREATE TABLE `request` (
   `request_id` int(11) NOT NULL AUTO_INCREMENT,
   `request_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `request_status` varchar(10) NOT NULL,
-  `call_no` varchar(30) NOT NULL,
-  `userid_no` varchar(10) NOT NULL,
+  `request_status` varchar(10) NOT NULL COMMENT 'PENDING, APPROVED or REJECTED',
+  `book_id` int(11) NOT NULL,
+  `library_id` int(11) NOT NULL,
   PRIMARY KEY (`request_id`),
-  KEY `call_no` (`call_no`),
-  KEY `call_no_2` (`call_no`),
-  KEY `userid_no` (`userid_no`)
+  KEY `book_id` (`book_id`),
+  KEY `library_id` (`library_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -81,16 +75,15 @@ CREATE TABLE `request` (
 --
 -- Table structure for table `transaction`
 --
--- Creation: Jan 15, 2014 at 11:05 AM
---
 
 CREATE TABLE `transaction` (
   `trans_id` int(11) NOT NULL AUTO_INCREMENT,
   `trans_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `trans_status` varchar(10) NOT NULL,
+  `trans_status` varchar(10) NOT NULL COMMENT 'PENDING or COMPLETED',
   `fine` int(11) DEFAULT NULL,
   `due_date` date NOT NULL,
   `request_id` int(11) NOT NULL,
+  `return_date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`trans_id`),
   KEY `request_id` (`request_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -100,8 +93,6 @@ CREATE TABLE `transaction` (
 --
 -- Table structure for table `user`
 --
--- Creation: Jan 15, 2014 at 10:52 AM
---
 
 CREATE TABLE `user` (
   `username` varchar(20) NOT NULL,
@@ -110,11 +101,12 @@ CREATE TABLE `user` (
   `email` varchar(42) NOT NULL,
   `mobile_no` varchar(11) NOT NULL,
   `college` varchar(10) NOT NULL,
-  `user_type` varchar(10) NOT NULL,
-  `userid_no` varchar(10) NOT NULL,
-  PRIMARY KEY (`userid_no`),
+  `user_type` varchar(10) NOT NULL COMMENT 'STUDENT or EMPLOYEE',
+  `userid_no` varchar(10) NOT NULL COMMENT 'refers to employee or student number',
+  `library_id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`library_id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Constraints for dumped tables
@@ -124,8 +116,8 @@ CREATE TABLE `user` (
 -- Constraints for table `request`
 --
 ALTER TABLE `request`
-  ADD CONSTRAINT `request_ibfk_2` FOREIGN KEY (`userid_no`) REFERENCES `user` (`userid_no`),
-  ADD CONSTRAINT `request_ibfk_1` FOREIGN KEY (`call_no`) REFERENCES `book` (`call_no`);
+  ADD CONSTRAINT `request_ibfk_2` FOREIGN KEY (`library_id`) REFERENCES `user` (`library_id`),
+  ADD CONSTRAINT `request_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `book` (`book_id`);
 
 --
 -- Constraints for table `transaction`
