@@ -10,3 +10,5 @@ This will be our main repo. Please follow these instructions
 
 Guys, pag nagcommit kayo ganito yung format ng commit message: [Your Name] [What you modify]
 e.g. Shai added login functionality to user
+
+*Also, document your work please. Practice na rin.
