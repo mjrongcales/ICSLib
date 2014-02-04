@@ -46,7 +46,7 @@
 		
 		  <ul class="nav navbar-nav navbar-right">
 						<li>
-							<a href="#">UserName</a> <!-- Put echo statement to user here. link to homePage-->
+							<a href="#"><?php echo $this->session->userdata('username'); ?></a> <!-- Put echo statement to user here. link to homePage-->
 						</li>
 						<li class="dropdown">
 							 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span><strong class="caret"></strong></a>
@@ -63,7 +63,7 @@
 								<li class="divider">
 								</li>
 								<li>
-									<a href="#">Separated link</a>
+									<a href="<?php echo base_url('/index.php/c_user/logout');?>">Log Out</a>
 								</li>
 							</ul>
 						</li>

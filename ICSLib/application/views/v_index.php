@@ -141,12 +141,67 @@
 					</div>
 					<div class="tab-pane" id="panel-3">
 						<p>
-							Login
+							<div class="row" id="main-content">
+
+								<?php if(isset($error)) echo "invalid username/password combination"; ?>
+								<br/>
+
+								<form name='user_signup' method='post' action='<?php echo base_url('/index.php/c_user/login_confirm')?>'>
+									<fieldset> <legend>Login</legend>
+									<p> 
+										<input type="text" name="uname" id="uname" placeholder="Username" required/>
+									</p>
+									<p> 
+										<input type="password" name="password" id="password" placeholder="Password" required/>
+									</p>
+
+									<input type="submit" name="submit" id="submit" class="btn btn-primary" value="Log In"/>
+									<a class="btn btn-danger" href="<?php echo base_url('/index.php/c_index/signup_init#panel-4');?>" role="button" data-toggle="modal">Register</a>
+									</fieldset>
+								</form>
+							</div>	
 						</p>
 					</div>
 					<div class="tab-pane" id="panel-4">
 						<p>
-							Register
+							<div class="row" id="main-content">
+							<form name='user_signup' method='post' action='<?php echo base_url('/index.php/c_user/signup_insert')?>'>
+								<fieldset>
+								<legend> Sign Up Form </legend>
+								<br/>
+								<p>
+									<input type='text' name='name' placeholder='Name' required/><br/>
+								</p>
+								<p>
+									<input type='text' name='uname' placeholder='Username' required/><br/>
+								</p>
+								<p>
+									<input type='password' name='pword' placeholder='Password'required/><br/>
+								</p>
+								<p>
+									<input type='email' name='email' placeholder='Email' required/><br/>
+								</p>
+								<p>
+									<input type='text' name='cnum' placeholder='Mobile No.' required/><br/>
+								</p>
+								<!-- Insert option for user type here (e.g. Employee or Student) -->
+								<p>
+									<input type='text' name='usr_num' placeholder='User Number' required/><br/>
+								</p>
+								<br/>
+								<p> 
+									College <select name="college" required>
+									<option selected>CAS</option>
+									<option>CEM</option>
+									<option>CEAT</option>
+									<option>CVM</option>
+									</select></br>
+								</p>
+								<br/>
+								<input type="submit" name="submit" id="submit" class="btn btn-primary" value="Register"/>
+								</fieldset>
+							</form>
+							</div>
 						</p>
 					</div>
 				</div>
