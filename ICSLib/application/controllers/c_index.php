@@ -7,6 +7,7 @@ class C_index extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('m_user');
+		$this->load->model('m_search');
 	}
 	/** Index Page for this controller */
 	public function index()
@@ -15,12 +16,16 @@ class C_index extends CI_Controller {
 			$this->load->view('v_user');	
 		}	
 		else{
-			
-			$this->load->view('v_index');
-			
+			$this->load->view('v_index');	
 		}
 	}
 	
+	public function search()
+	{
+		$search_term = $this->input->post('word');
+		$data['books'] = $this->m_search->search_books($search_term);
+		$this->load->view('v_index',$data);
+	}
 
 }
 

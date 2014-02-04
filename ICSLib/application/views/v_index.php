@@ -105,28 +105,66 @@
 								<div class="panel panel-default">
 									<div class="panel-heading">
 										
-										<form action="http://google.com/search" method="GET" id="search-form" role="search">
+										<form action="<?php echo base_url('/index.php/c_index/search')?>" method="post" id="search-form" role="search">
 											<div class="input-group">
-												<input type="text" class="form-control" placeholder="Search Title">
+												<input type="text" id="word" name="word" class="form-control" placeholder="Enter keywords">
 												<span class="input-group-btn">
 													<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button><!-- search button -->
 													<button class="btn btn-default" type="button" data-toggle="collapse" data-parent="#panel-340522" href="#panel-element-122876"><span class="glyphicon glyphicon-plus"></span></button><!-- search button -->
 												</span>
 											</div><!-- /input-group -->
 										</form>
-										
 									</div>
+
+									<div class="panel-body">
+											<h3> Search Results </h3>	
+												<!-- table -->	
+													
+												<table class="table table-condensed table-hover">
+													<thead>
+													<tr>
+														<th>Call No.</th>
+														<th>Title</th>
+														<th>Author</th>
+														<th>Book Type</th>
+														<th>Description</th>
+														<th>Status</th>
+													</tr>
+													</thead>
+													<tbody>
+													<?php if($books==NULL)
+													{
+														echo "<h4> No results found. </h4>";
+													}
+													?>
+													<?php foreach($books as $record): 	//iterate to each result
+														/* Print records */
+														echo "<tr>";
+														echo "	<td> {$record['call_no']} </td>";		//display call number of book
+														echo "	<td> {$record['title']} </td>";			//display title of book
+														echo "	<td> {$record['author']} </td>";		//display author oof book
+														echo "	<td> {$record['book_type']} </td>";			//display book type
+														echo "	<td> {$record['description']} </td>";		//display book description
+														echo "	<td> {$record['book_status']} </td>";	//display book status
+														echo "</tr>";
+													?>
+													<?php endforeach ?>
+													</tbody>
+												</table>
+												</div>
+
 									<div id="panel-element-122876" class="panel-collapse collapse">
 										<div class="panel-body">
 											Advanced Options
-										</div>
-									</div>
-								</div>
+										</div>	<!-- for panel-body -->
+									</div> <!-- for panel-collapse -->
+								</div> <!-- for panel panel-default -->
 								
-							</div>
-						</div>
+							</div> <!-- for panel group -->
+						</div> <!-- for col-md-8-column -->
 						<div class="col-md-2 column">
 						<!-- Third div -->
+						<h3> What's this? </h3>
 						</div>
 					</div>
 						

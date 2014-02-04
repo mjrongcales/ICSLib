@@ -1,5 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/** Controller for user functions */
 class C_user extends CI_Controller {
 
 
@@ -29,8 +30,6 @@ class C_user extends CI_Controller {
 		$data['transaction'] = $this->m_user->get_transaction();
 		
 		if($res){
-			//$this->index();
-			//redirect('/c_index/','refresh');
 			$this->load->view('v_user',$data);
 		
 		}else{
@@ -55,5 +54,5 @@ class C_user extends CI_Controller {
 
 	
 
-/* End of file c_index.php */
-/* Location: ./application/controllers/c_index.php */
+/* End of file c_user.php */
+/* Location: ./application/controllers/c_user.php */
