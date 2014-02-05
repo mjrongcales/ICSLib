@@ -81,13 +81,13 @@
 						<a href="#panel-1" data-toggle="tab">Search</a>
 					</li>
 					<li>
-						<a href="#panel-2" data-toggle="tab">News</a>
+						<a href="#panel-2" data-toggle="tab">Manage Books</a>
 					</li>
 					<li>
-						<a href="#panel-3" data-toggle="tab">Login</a>
+						<a href="#panel-3" data-toggle="tab">Manage Reservation</a>
 					</li>
 					<li>
-						<a href="#panel-4" data-toggle="tab">Register</a>
+						<a href="#panel-4" data-toggle="tab">Lend/Return Book</a>
 					</li>
 				</ul>
 				<div class="tab-content">
@@ -135,10 +135,76 @@
 						
 					</div>
 					<div class="tab-pane" id="panel-2">
-						<p>
-							News
-						</p>
+						<div class="row clearfix">
+							<div class="tabbable" id="tabs-779915">
+								<div class="col-md-2 column">
+									<ul class="nav nav-pills">
+										<li class="active">
+											<a href="#panel-001" data-toggle="tab">Add Book</a>
+										</li>
+										<li>
+											<a href="#panel-002" data-toggle="tab">Update Book Info </a>
+										</li>
+										<li>
+											<a href="#panel-003" data-toggle="tab">Delete Book</a>
+										</li>
+								
+									</ul>
+								</div>
+								<div class="col-md-10 column">
+									<div class="tab-content">
+										<div class="tab-pane active" id="panel-001">
+											
+											<!-- Notifications-->
+											
+											<div class="panel panel-primary">
+												<div class="panel-heading">
+													<h3 class="panel-title">Add Book</h3>
+												</div>
+												<div class="panel-body">
+													Panel content
+												</div>
+											</div>
+											
+										</div>
+										<div class="tab-pane" id="panel-002">
+											
+											<!-- Account-->
+											
+											<div class="panel panel-primary">
+												<div class="panel-heading">
+													<h3 class="panel-title">Update Book Info</h3>
+												</div>
+												<div class="panel-body">
+													Panel content
+												</div>
+											</div>
+											
+											
+										</div>
+										<div class="tab-pane" id="panel-003">
+											
+											<!-- History-->
+											
+											<div class="panel panel-primary">
+												<div class="panel-heading">
+													<h3 class="panel-title">Delete Book</h3>
+												</div>
+												<div class="panel-body">
+													
+												
+												</div>
+											</div>
+										</div>
+										
+										<!-- End of tabbed panel-2 -->
+
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
+
 					<div class="tab-pane" id="panel-3">
 						<p>
 							Login
