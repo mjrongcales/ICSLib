@@ -55,27 +55,44 @@ class M_user extends CI_Model{
 		}
 	
 	}
-	public function get_transaction()
+	/** Function to retrieve user details */
+	public function get_userinfo($username='default')
 	{
-		// get library_id of user logged in from session
-		//$uname = $this->session->userdata('username');
-		//$library_id = $this->query("SELECT library_id from user WHERE username = '$uname'");
+		/** Select necessary user details of logged in user*/
+		$this->db->select('username,name,userid_no,email,college,mobile_no');
+		$this->db->from('user');
+		$this->db->like('username',$username);
+		$query = $this->db->get();
+		return $query->row_array(6);	// return results as a row array
+	}
+	/* Function to retrieve account history */
+	public function get_transaction($username='default')
+	{
+		/** Get the library id of user logged in */
+		$this->db->select('library_id');
+		$this->db->from('user');
+		$this->db->like('username',$username);
+		$uid = $this->db->get();
+		$library_id = $uid->free_result();
+		/* Select requests of logged in user */
 		$this->db->select('*');
 		$this->db->from('request');
+		$this->db->like('request.library_id',$library_id);
 		$this->db->join('book','book.book_id = request.book_id');
 		$this->db->join('transaction','transaction.request_id = request.request_id');
 		$query = $this->db->get();
-		return $query->result_array();
-
-		
-		// select request.request_id, request.book_id, request.request_status, 
-		// request.request_date, title, call_no from request, book where library_id=logged_in and request.book_id = book.book_id;
-		// select request_id, book_id, status, request_date from request where library_id=logged_in;
-		// select title, call_no from book where book_id=book_id;
-		// select request_id, fine, return_date from transaction where request_id=request_id;
+		return $query->result_array();	//return results as an array
 
 	}
+	public function get_library_id($username='default')
 	
+	{	$this->db->select('library_id');
+		$this->db->from('user');
+		$this->db->like('username',$username);
+		$query = $this->db->get();
+		//$query = $this->db->query("SELECT library_id FROM user WHERE username = '$username'");
+		return $query->free_result();
+	}
 }
 
 ?>

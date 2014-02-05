@@ -1,4 +1,3 @@
-
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /** Controller for user functions */
 class C_user extends CI_Controller {
@@ -27,11 +26,16 @@ class C_user extends CI_Controller {
 	function login_confirm(){
 
 		$res = $this->m_user->login();
-		$data['transaction'] = $this->m_user->get_transaction();
-		
+		// Get username of logged in user.
+		$username = $this->session->userdata('username');	
+		// Retrive transaction records of logged in user.
+		$data['transaction'] = $this->m_user->get_transaction($username);
+		// Retrieve account history of logged in user.
+		$data['userinfo'] = $this->m_user->get_userinfo($username);	
+
 		if($res){
 			$this->load->view('v_user',$data);
-		
+
 		}else{
 		
 			$data['error'] = TRUE;

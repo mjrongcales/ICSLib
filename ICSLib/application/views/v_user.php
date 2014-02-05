@@ -134,7 +134,18 @@
 													<h3 class="panel-title">Account Details</h3>
 												</div>
 												<div class="panel-body">
-													Panel content
+													<!-- Display account details -->
+													<?php 
+														echo "<div>";
+														echo "<p><h4>Username </h4> {$userinfo['username']}</br>"; 
+														echo "<h4>Student Number </h4> {$userinfo['userid_no']}<br/>"; 
+														echo "<h4>Name </h4> <input type='text' id='uname' name='uname' value={$userinfo['name']}> <br/>"; 
+														echo "<h4>Email </h4> <input type='text' id='uname' name='uname' value={$userinfo['email']}> <br/>"; 
+														echo "<h4>Mobile No. </h4> <input type='text' id='uname' name='uname' value={$userinfo['mobile_no']}> <br/>"; 
+														echo "<h4>College </h4> <input type='text' id='uname' name='uname' value={$userinfo['college']}></p>"; 
+														echo "</div>";
+														echo "<input type='button' value='Update'>";
+													?>
 												</div>
 											</div>
 											
@@ -150,7 +161,7 @@
 												</div>
 												<div class="panel-body">
 													
-												<!-- table -->	
+												<!-- Display account history in a table -->	
 													
 												<table class="table table-condensed table-hover">
 													<thead>
