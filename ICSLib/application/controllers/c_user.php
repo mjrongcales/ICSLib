@@ -7,6 +7,7 @@ class C_user extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('m_user');
+		$this->load->model('m_search');
 	}
 	
 	public function signup_init(){
@@ -52,6 +53,13 @@ class C_user extends CI_Controller {
 	
 		redirect('/c_index/','refresh');
 	
+	}
+
+	public function search()
+	{
+		$search_term = $this->input->post('word');
+		$data['books'] = $this->m_search->search_books($search_term);
+		$this->load->view('v_user',$data);
 	}
 
 }
