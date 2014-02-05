@@ -81,14 +81,14 @@
 					<li class="active">
 						<a href="#panel-1" data-toggle="tab">User Profile</a>
 					</li>
-					<li>
+					<!-- <li>
 						<a href="#panel-2" data-toggle="tab">Account History</a>
+					</li> -->
+					<li>
+						<a href="#panel-4" data-toggle="tab">Search</a>
 					</li>
 					<li>
 						<a href="#panel-3" data-toggle="tab">News</a>
-					</li>
-					<li>
-						<a href="#panel-4" data-toggle="tab">Search</a>
 					</li>
 				</ul>
 				<div class="tab-content">
@@ -106,6 +106,9 @@
 										</li>
 										<li>
 											<a href="#panel-003" data-toggle="tab">Account History</a>
+										</li>
+										<li>
+											<a href="#panel-004" data-toggle="tab">Manage Request</a>
 										</li>
 									</ul>
 								</div>
@@ -219,9 +222,36 @@
 												</table>
 												</div>
 											</div>
+										</div>
+											<div class="tab-pane" id="panel-004">
+											
+											<!-- Account-->
+											
+											<div class="panel panel-primary">
+												<div class="panel-heading">
+													<h3 class="panel-title">Manage Request</h3>
+												</div>
+												<div class="panel-body">
+													<!-- Display current requests -->
+													<table class="table table-condensed table-hover">
+													<thead>
+													<tr>
+														<th>Call No.</th>
+														<th>Title</th>
+														<th>Status</th>		<!-- Pending, Approved, or Rejected -->
+														<th>Waitlist Rank</th>	
+														<th>Action</th>		<!-- Retry (if rejected) or Cancel -->
+													</tr>
+													</thead>
+													<tbody>
+													</tbody>
+													</table>
+												</div>
+											</div>
 											
 											
 										</div>
+
 									</div>
 								</div>
 							</div>
